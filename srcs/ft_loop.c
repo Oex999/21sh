@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 10:38:32 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/15 13:56:28 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/15 14:09:06 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		ft_format_args(char *line, t_all *all)
 		args[i] = ft_trimwhite(args[i]);
 		i++;
 	}
+	res = ft_execute(args, all);
 	ft_deltab(args);
 	return (res);
 }
