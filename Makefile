@@ -6,7 +6,7 @@
 #    By: oexall <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/15 09:28:12 by oexall            #+#    #+#              #
-#    Updated: 2016/07/15 10:02:15 by oexall           ###   ########.fr        #
+#    Updated: 2016/07/15 12:39:09 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SP= ./srcs/
 IP= ./include/
 
 SRC= $(SP)main.c \
-	 $(SP)ft_misc_one.c
+	 $(SP)ft_misc_one.c \
+	 $(SP)ft_loop.c \
+	 $(SP)ft_split.c
 
 all: $(NAME)
 
