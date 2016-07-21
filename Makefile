@@ -6,7 +6,7 @@
 #    By: oexall <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/15 09:28:12 by oexall            #+#    #+#              #
-#    Updated: 2016/07/15 15:20:23 by oexall           ###   ########.fr        #
+#    Updated: 2016/07/21 09:10:13 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,18 +14,26 @@ NAME=21sh
 
 CC= gcc -o
 CF= -Wall -Werror -Wextra
-LIBFT= -L libft -lft
+LIBFT= -L libft -lft -ltermcap
 
 SP= ./srcs/
 IP= ./include/
 
 SRC= $(SP)main.c \
 	 $(SP)ft_misc_one.c \
+	 $(SP)ft_misc_two.c \
 	 $(SP)ft_loop.c \
 	 $(SP)ft_split.c \
 	 $(SP)ft_execute.c \
 	 $(SP)ft_launch.c \
-	 $(SP)ft_env.c
+	 $(SP)ft_env.c \
+	 $(SP)ft_termcap.c \
+	 $(SP)ft_keyhook.c \
+	 $(SP)ft_error.c \
+	 $(SP)ft_builtin_cd.c \
+	 $(SP)ft_builtin_echo.c \
+	 $(SP)ft_builtin_setenv.c \
+	 $(SP)ft_builtin_unsetenv.c
 
 all: $(NAME)
 
