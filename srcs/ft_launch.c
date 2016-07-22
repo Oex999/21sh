@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:43:03 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/21 09:22:30 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/22 10:38:44 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_home_exec(char **args, t_all *all)
 	h_path = getcwd(NULL, 0);
 	e_path = ft_join(h_path, args[0], '/');
 	if (execve(e_path, args, all->env) == -1)
-		res = -1; 
+		res = -1;
 	free(h_path);
 	free(e_path);
 	return (res);
@@ -49,7 +49,7 @@ static int	ft_exec(char **args, t_all *all)
 		{
 			free(v_path);
 			res = 1;
-			break;
+			break ;
 		}
 		if (v_path)
 			free(v_path);

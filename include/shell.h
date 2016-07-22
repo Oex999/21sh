@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 09:52:52 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/21 08:55:03 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/22 10:18:41 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct		s_cursor
 
 typedef struct		s_win
 {
-	struct	termios	original;
 	struct	termios	term;
 	t_cursor		cursor;
 	int				insert_mode;

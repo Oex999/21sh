@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 09:49:39 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/19 09:48:16 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/22 10:45:24 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,15 @@ int			main(int argc, char **argv, char **environ)
 
 	(void)argc;
 	(void)argv;
+	ft_init_term(&all.win);
 	all.env = ft_copyenv(environ);
-	all.user = "oexall";
+	all.user = ft_getenv(&all, "USER", '=');
+	all.user++;
 	all.pwd = getcwd(NULL, 0);
 	all.old_pwd = all.pwd;
 	ft_loop(&all);
 	free(all.pwd);
 	ft_deltab(all.env);
+	ft_end_term(&all.win);
 	return (0);
 }

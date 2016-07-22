@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 14:18:45 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/19 08:14:32 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/22 10:25:41 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int		ft_init_term(t_win *win)
 		return (-1);
 	if (tcgetattr(0, &(win->term)) == -1)
 		return (-1);
-	win->original = win->term;
-	win->term.c_lflag &= ~(ICANON);
+	win->term.c_lflag &= ~(ICANON | ECHO);
 	win->term.c_cc[VMIN] = 1;
 	win->term.c_cc[VTIME] = 0;
 	if (tcsetattr(0, 0, &(win->term)) == -1)
@@ -29,7 +28,7 @@ int		ft_init_term(t_win *win)
 
 int		ft_end_term(t_win *win)
 {
-	win->term.c_lflag |= (ICANON);
+	win->term.c_lflag |= (ICANON | ECHO);
 	if (tcsetattr(0, 0, &(win->term)) == -1)
 		return (-1);
 	return (1);
