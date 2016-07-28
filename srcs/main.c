@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 09:49:39 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/22 10:45:24 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/26 15:11:33 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,38 @@ static char	**ft_copyenv(char **environ)
 	return (tmp);
 }
 
+static void	ft_clear_hist(t_all *all)
+{
+	t_hist	*list;
+	t_hist	*tmp;
+
+	list = all->hist;
+	while (list->elem)
+	{
+		tmp = list->next;
+		list->next = NULL;
+		if (list->elem)
+			free(list->elem);
+		list = NULL;
+		list = tmp;
+	}
+	free(all->hist);
+}
+
+static void	ft_init(t_all *all)
+{
+	all->line = NULL;
+	all->len = -1;
+	all->user = ft_getenv(all, "USER", '=');
+	all->user++;
+	all->pwd = getcwd(NULL, 0);
+	all->old_pwd = all->pwd;
+	all->line = ft_strnew(1024);
+	ft_putstr("\033c");
+	all->win.cursor.hpos = 0;
+	all->win.cursor.vpos = ft_strlen(all->user) + 3;
+}
+
 int			main(int argc, char **argv, char **environ)
 {
 	t_all	all;
@@ -44,13 +76,13 @@ int			main(int argc, char **argv, char **environ)
 	(void)argv;
 	ft_init_term(&all.win);
 	all.env = ft_copyenv(environ);
-	all.user = ft_getenv(&all, "USER", '=');
-	all.user++;
-	all.pwd = getcwd(NULL, 0);
-	all.old_pwd = all.pwd;
+	ft_init(&all);
 	ft_loop(&all);
 	free(all.pwd);
 	ft_deltab(all.env);
+	ft_clear_hist(&all);
+	if (all.line)
+		free(all.line);
 	ft_end_term(&all.win);
 	return (0);
 }

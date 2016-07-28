@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 09:52:52 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/22 10:18:41 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/28 09:21:32 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,22 @@
 # include <termcap.h>
 # include <termios.h>
 # include <stdlib.h>
+# include <signal.h>
 # include "errors.h"
 # include "../libft/libft.h"
+
+# define CURSOR all->win.cursor.vpos
+# define USER ft_strlen(all->user) + 2
+# define TOTAL CURSOR + USER
+
+typedef enum		e_keys
+{
+	KEY_UP = 4283163,
+	KEY_DOWN = 4348699,
+	KEY_BACKSPACE = 127,
+	KEY_LEFT_ARROW = 4479771,
+	KEY_RIGHT_ARROW = 4414235
+}					t_keys;
 
 typedef struct		s_cursor
 {
@@ -33,6 +47,13 @@ typedef struct		s_win
 	int				delete_mode;
 }					t_win;
 
+typedef struct		s_hist
+{
+	char			*elem;
+	int				select;
+	struct s_hist	*next;
+}					t_hist;
+
 typedef struct		s_all
 {
 	char			**env;
@@ -40,9 +61,12 @@ typedef struct		s_all
 	char			*old_pwd;
 	char			*pwd;
 	t_win			win;
+	char			*line;
+	int				len;
+	t_hist			*hist;
 }					t_all;
 
-/*ft_misc_(one;two).c*/
+/*ft_misc_(one;two;).c*/
 void				ft_deltab(char **tab);
 char				*ft_trimwhite(char *str);
 int					ft_print_env(t_all *all);
@@ -50,6 +74,7 @@ char				*ft_join(char *s1, char *s2, char join);
 int					ft_tputchar(int c);
 int					ft_cargs(char **args);
 char				**ft_dubtab(char **tab, int len);
+void				ft_copy_into_line(t_all *all, char *str);
 /*ft_loop.c*/
 void				ft_loop(t_all *all);
 int					ft_format_args(char *line, t_all *all);
@@ -76,4 +101,12 @@ int					ft_cd(char **args, t_all *all);
 int					ft_echo(char **args, t_all *all);
 int					ft_setenv(char **args, t_all *all);
 int					ft_unsetenv(char **args, t_all *all);
+/*ft_key_move.c*/
+void				ft_putline(t_all *all);
+void				ft_hist_key(t_all *all, int dir);
+/*ft_list_(one).c*/
+t_hist				*ft_create_elem(char *str);
+void				ft_list_push_front(t_hist **begin_list, char *str);
+/*ft_chars.c*/
+void				ft_backspace(t_all *all);
 #endif

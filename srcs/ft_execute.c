@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:03:32 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/21 09:09:51 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/28 07:14:09 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			ft_execute(char **args, t_all *all)
 	else if (ft_bncmp(args[0], "exit", 4) == 0)
 		return (0);
 	else if (ft_bncmp(args[0], "clear", 5) == 0)
-		ft_putstr("\033c");
+		tputs(tgetstr("cl", NULL), 1, ft_tputchar);
 	else if (ft_bncmp(args[0], "env", 3) == 0)
 		return (ft_print_env(all));
 	else if (ft_bncmp(args[0], "cd", 2) == 0)

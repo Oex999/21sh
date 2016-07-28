@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 10:38:32 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/22 10:45:17 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/28 06:55:30 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		ft_format_args(char *line, t_all *all)
 void	ft_loop(t_all *all)
 {
 	int		status;
-	char	*line;
 	char	**cmds;
 	int		c;
 
@@ -43,8 +42,9 @@ void	ft_loop(t_all *all)
 	{
 		ft_putstr(all->user);
 		ft_putstr("$>");
-		get_next_line(0, &line);
-		cmds = ft_strsplit(line, ';');
+		if (ft_keyhook(all) == 0)
+			continue;
+		cmds = ft_strsplit(all->line, ';');
 		c = 0;
 		while (cmds[c] != NULL)
 		{
@@ -52,6 +52,7 @@ void	ft_loop(t_all *all)
 			c++;
 		}
 		ft_deltab(cmds);
-		free(line);
+		ft_strclr(all->line);
+		all->len = -1;
 	}
 }
