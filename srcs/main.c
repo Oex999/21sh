@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 09:49:39 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/26 15:11:33 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/28 14:58:03 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	ft_init(t_all *all)
 	all->line = ft_strnew(1024);
 	ft_putstr("\033c");
 	all->win.cursor.hpos = 0;
-	all->win.cursor.vpos = ft_strlen(all->user) + 3;
+	all->win.cursor.vpos = ft_strlen(all->user) + 2;
 }
 
 int			main(int argc, char **argv, char **environ)

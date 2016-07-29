@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 07:20:32 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/25 15:07:55 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/28 14:36:18 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_copy_into_line(t_all *all, char *str)
 	ft_strclr(all->line);
 	all->len = -1;
 	all->len += ft_strlen(str);
+	all->win.cursor.vpos = USER + all->len + 1;
 	while (str[i] != '\0')
 	{
 		all->line[i] = str[i];

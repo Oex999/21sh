@@ -6,7 +6,7 @@
 #    By: oexall <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/15 09:28:12 by oexall            #+#    #+#              #
-#    Updated: 2016/07/26 14:42:25 by oexall           ###   ########.fr        #
+#    Updated: 2016/07/28 14:32:45 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,6 @@ me:
 
 norm:
 	@echo "Starting Norminette. Good Luck!"
-	@norminette $(SRC)
+	@norminette $(SRC) ./include/shell.h
 	@echo "Finished. How did it go?"
 

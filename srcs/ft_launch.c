@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:43:03 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/28 11:25:29 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/29 10:08:25 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,16 @@ int			ft_launch(char **args, t_all *all)
 {
 	pid_t	pid;
 	int		status;
-	int		result;
 
 	pid = fork();
 	status = 1;
-	result = 1;
 	if (pid == 0 && args && args[0] != NULL && args[0][0] != '\0')
 	{
-		if (execve(args[0], args, all->env) != -1 && result == 1)
+		if (execve(args[0], args, all->env) != -1)
 			return (0);
-		if (ft_home_exec(args, all) != -1 && result == 1)
+		if (ft_home_exec(args, all) != -1)
 			return (0);
-		if (ft_exec(args, all) != -1 && result == 1)
+		if (ft_exec(args, all) != -1)
 			return (0);
 		return (ft_cmderr(args[0], "Command not found", 0));
 	}

@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 09:52:52 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/28 09:21:32 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/29 09:14:00 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define CURSOR all->win.cursor.vpos
 # define USER ft_strlen(all->user) + 2
-# define TOTAL CURSOR + USER
+# define TOTAL all->len + USER
 
 typedef enum		e_keys
 {
@@ -30,7 +30,9 @@ typedef enum		e_keys
 	KEY_DOWN = 4348699,
 	KEY_BACKSPACE = 127,
 	KEY_LEFT_ARROW = 4479771,
-	KEY_RIGHT_ARROW = 4414235
+	KEY_RIGHT_ARROW = 4414235,
+	KEY_HOME = 4741915,
+	KEY_END = 4610843
 }					t_keys;
 
 typedef struct		s_cursor
@@ -41,7 +43,7 @@ typedef struct		s_cursor
 
 typedef struct		s_win
 {
-	struct	termios	term;
+	struct termios	term;
 	t_cursor		cursor;
 	int				insert_mode;
 	int				delete_mode;
@@ -92,6 +94,8 @@ int					ft_indexof(char *env, t_all *all);
 int					ft_init_term(t_win *win);
 int					ft_end_term(t_win *win);
 /*ft_keyhook.c*/
+void				ft_move_left(t_all *all);
+void				ft_move_right(t_all *all);
 int					ft_keyhook(t_all *all);
 /*ft_error.c*/
 int					ft_cmderr(char *cmd, char *err, int ret);
@@ -109,4 +113,7 @@ t_hist				*ft_create_elem(char *str);
 void				ft_list_push_front(t_hist **begin_list, char *str);
 /*ft_chars.c*/
 void				ft_backspace(t_all *all);
+void				ft_insert(char c, t_all *all);
+void				ft_home_end(t_all *all, int dir);
+/*ft_pipe_misc.c*/
 #endif

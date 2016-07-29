@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/25 12:17:50 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/28 09:03:58 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/28 14:10:59 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void		ft_putline(t_all *all)
 	ft_putstr(all->user);
 	ft_putstr("$>");
 	ft_putstr(all->line);
-	all->win.cursor.vpos = ft_strlen(all->user) + 2 + ft_strlen(all->line);
 }
 
 void		ft_hist_key(t_all *all, int dir)

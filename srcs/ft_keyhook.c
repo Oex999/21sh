@@ -6,29 +6,22 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 08:01:48 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/28 11:13:31 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/29 08:09:44 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/shell.h"
 
-static void	ft_add_to_line(char c, t_all *all)
+void		ft_move_left(t_all *all)
 {
-	++(all->len);
-	all->line[all->len] = c;
-	ft_putchar(c);
-}
-
-static void	ft_move_left(t_all *all)
-{
-	if (CURSOR > (int)(ft_strlen(all->user) + 2))
+	if (CURSOR > (int)(ft_strlen(all->user) + 2) && all->len > -1)
 	{
 		all->win.cursor.vpos -= 1;
 		tputs(tgetstr("le", NULL), 1, ft_tputchar);
 	}
 }
 
-static void	ft_move_right(t_all *all)
+void		ft_move_right(t_all *all)
 {
 	if (CURSOR < (int)(ft_strlen(all->user) + 3 + all->len))
 	{
@@ -49,6 +42,10 @@ static void	ft_common(int keycode, t_all *all)
 		ft_move_left(all);
 	else if (keycode == KEY_RIGHT_ARROW)
 		ft_move_right(all);
+	else if (keycode == KEY_HOME)
+		ft_home_end(all, -1);
+	else if (keycode == KEY_END)
+		ft_home_end(all, 1);
 }
 
 int			ft_keyhook(t_all *all)
@@ -67,14 +64,13 @@ int			ft_keyhook(t_all *all)
 		ft_common(code, all);
 		if (code == 10)
 		{
-			if (all->len > -1)
-				ft_putchar('\n');
+			ft_putchar('\n');
 			all->win.cursor.vpos = ft_strlen(all->user) + 3;
 			ft_list_push_front(&all->hist, all->line);
 			return ((all->len >= 0) ? 1 : 0);
 		}
 		else if (code >= 32 && code <= 126)
-			ft_add_to_line((char)code, all);
+			ft_insert(code, all);
 	}
 	return (1);
 }
