@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 09:52:52 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/29 09:14:00 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/29 10:50:03 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,10 @@ int					ft_format_args(char *line, t_all *all);
 char				**ft_split(char *str);
 /*ft_execute.c*/
 int					ft_execute(char **args, t_all *all);
+int					ft_execute_all(char **args, t_all *all);
 /*ft_launch.c*/
+int					ft_home_exec(char **args, t_all *all);
+int					ft_exec(char **args, t_all *all);
 int					ft_launch(char **args, t_all *all);
 /*ft_env.c*/
 char				*ft_getenv(t_all *all, char *value, char ptr);
@@ -116,4 +119,7 @@ void				ft_backspace(t_all *all);
 void				ft_insert(char c, t_all *all);
 void				ft_home_end(t_all *all, int dir);
 /*ft_pipe_misc.c*/
+int					ft_ispipe(char **args);
+/*ft_pipe.c*/
+int					ft_execute_pipe(char **args, t_all *all);
 #endif

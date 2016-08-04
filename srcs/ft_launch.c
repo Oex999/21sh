@@ -6,13 +6,13 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:43:03 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/29 10:08:25 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/29 10:38:31 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/shell.h"
 
-static int	ft_home_exec(char **args, t_all *all)
+int		ft_home_exec(char **args, t_all *all)
 {
 	int		res;
 	char	*h_path;
@@ -30,7 +30,7 @@ static int	ft_home_exec(char **args, t_all *all)
 	return (res);
 }
 
-static int	ft_exec(char **args, t_all *all)
+int		ft_exec(char **args, t_all *all)
 {
 	int		i;
 	int		res;

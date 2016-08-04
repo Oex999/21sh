@@ -6,7 +6,7 @@
 #    By: oexall <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/15 09:28:12 by oexall            #+#    #+#              #
-#    Updated: 2016/07/28 14:32:45 by oexall           ###   ########.fr        #
+#    Updated: 2016/07/29 10:43:00 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,9 @@ SRC= $(SP)main.c \
 	 $(SP)ft_builtin_unsetenv.c \
 	 $(SP)ft_key_move.c \
 	 $(SP)ft_list_one.c \
-	 $(SP)ft_chars.c
+	 $(SP)ft_chars.c \
+	 $(SP)ft_pipe_misc.c \
+	 $(SP)ft_pipe.c
 
 all: $(NAME)
 

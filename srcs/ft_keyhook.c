@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 08:01:48 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/29 08:09:44 by oexall           ###   ########.fr       */
+/*   Updated: 2016/07/29 14:33:36 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int			ft_keyhook(t_all *all)
 		{
 			ft_putchar('\n');
 			all->win.cursor.vpos = ft_strlen(all->user) + 3;
-			ft_list_push_front(&all->hist, all->line);
+			if (all->len > -1)
+				ft_list_push_front(&all->hist, all->line);
 			return ((all->len >= 0) ? 1 : 0);
 		}
 		else if (code >= 32 && code <= 126)
