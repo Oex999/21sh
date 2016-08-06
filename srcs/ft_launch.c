@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:43:03 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/29 10:38:31 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/06 09:47:30 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,35 @@ int		ft_exec(char **args, t_all *all)
 	return (res);
 }
 
-int			ft_launch(char **args, t_all *all)
+void	ft_changeredir(char ***p_args)
+{
+	char	**args;
+	int		fd;
+	int		i;
+	int		len;
+
+	args = *p_args;
+	i = ft_isredir(args);
+	len = ft_strlen(args[i]);
+	if (ft_strncmp(args[i], ">", 1) == 0 && args[i + 1] && len == 1)
+	{
+		fd = open(args[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		dup2(fd, STDOUT_FILENO);
+		close(fd);
+		args[i] = NULL;
+		return ;
+	}
+	if (ft_strncmp(args[i], ">>", 2) == 0 && args[i + 1] && len == 2)
+	{
+		fd = open(args[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+		dup2(fd, STDOUT_FILENO);
+		close(fd);
+		args[i] = NULL;
+		return ;
+	}
+}
+
+int		ft_launch(char **args, t_all *all)
 {
 	pid_t	pid;
 	int		status;
@@ -68,6 +96,8 @@ int			ft_launch(char **args, t_all *all)
 	status = 1;
 	if (pid == 0 && args && args[0] != NULL && args[0][0] != '\0')
 	{
+		if (ft_isredir(args) > -1)
+			ft_changeredir(&args);
 		if (execve(args[0], args, all->env) != -1)
 			return (0);
 		if (ft_home_exec(args, all) != -1)

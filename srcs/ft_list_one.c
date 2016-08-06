@@ -6,17 +6,18 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/25 12:33:17 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/26 09:22:53 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/04 07:59:36 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/shell.h"
 
-static void	ft_allzero(t_hist *hist)
+static void	ft_allzero(t_hist **hist)
 {
 	t_hist	*list;
 
-	list = hist;
+	list = NULL;
+	list = *hist;
 	while (list->elem)
 	{
 		list->select = 0;
@@ -40,11 +41,13 @@ void		ft_list_push_front(t_hist **begin_list, char *str)
 	t_hist	*list;
 	t_hist	*tmp;
 
+	list = NULL;
+	tmp = NULL;
 	list = *begin_list;
 	tmp = ft_create_elem(str);
 	if (tmp && list)
 	{
-		ft_allzero(list);
+		ft_allzero(&list);
 		tmp->next = list;
 		*begin_list = tmp;
 	}

@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 10:57:31 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/21 08:46:19 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/06 09:00:39 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@
 # define E_INVALIDVAR "No ENV with that name"
 # define E_NOARGS "Not enough Arguments"
 # define E_SETENVARGS "Invalid Arguments\n\tUsage: setenv [NAME] [value]"
+
 #endif

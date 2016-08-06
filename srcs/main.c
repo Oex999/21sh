@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 09:49:39 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/28 14:58:03 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/04 07:56:56 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	ft_clear_hist(t_all *all)
 	t_hist	*list;
 	t_hist	*tmp;
 
+	tmp = NULL;
+	list = NULL;
 	list = all->hist;
 	while (list->elem)
 	{

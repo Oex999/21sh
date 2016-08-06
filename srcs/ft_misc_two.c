@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 07:20:32 by oexall            #+#    #+#             */
-/*   Updated: 2016/07/28 14:36:18 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/06 09:12:53 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,19 @@ void	ft_copy_into_line(t_all *all, char *str)
 		all->line[i] = str[i];
 		i++;
 	}
+}
+
+int		ft_isredir(char **args)
+{
+	int	i;
+
+	i = -1;
+	while (args[++i])
+	{
+		if (ft_strncmp(args[i], ">", 1) == 0)
+			return (i);
+		if (ft_strncmp(args[i], ">>", 2) == 0)
+			return (i);
+	}
+	return (-1);
 }
